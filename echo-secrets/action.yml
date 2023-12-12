@@ -1,0 +1,12 @@
+name: Echo Secrets
+    
+runs:
+  using: composite
+  steps:
+    - name: Echo Test
+      run: echo "Test"
+      shell: bash
+    - name: Echo Org Secret
+      run: |
+        echo "Organization Secret => ${{ secrets.TEMP }}"
+      shell: bash
