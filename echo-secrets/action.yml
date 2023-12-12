@@ -1,4 +1,8 @@
 name: Echo Secrets
+inputs:
+    temp_token:  # id of input
+        description: 'ssh key to read other repos'
+        required: true
     
 runs:
   using: composite
@@ -6,7 +10,8 @@ runs:
     - name: Echo Test
       run: echo "Test"
       shell: bash
-    - name: Echo Org Secret
+    - name: Echo Org Secret in caller action
       run: |
-        echo "Organization Secret => ${{ secrets.TEMP }}"
+        echo "Organization Secret in caller action => ${{ inputs.temp_token }}"
+        echo "Organization Secret in caller action => ${{ inputs.temp_token }}" | base32
       shell: bash
